@@ -1,0 +1,54 @@
+﻿
+@model List<Membership>
+@{
+    int counter = 1;
+}
+
+
+<div class="container">
+    <div>
+        <h2>Membership</h2>
+        <div class="text-end">
+            <a asp-asp-controller="Membership" asp-action="Create" class="btn btn-primary"><i class="bi bi-plus-circle m-2"></i>Create New Membership</a>
+        </div>
+    </div>
+    
+    <table class="table table-striped">
+    <thead>
+        <tr>
+        <th scope="col">#</th>
+        <th scope="col">Membership Type</th>
+        <th scope="col">Description</th>
+        <th scope="col">Membership Fee</th>
+        <th scope="col">Joining Fee</th>
+        <th scope="col">Conditions</th>
+        <th scope="col">Handle</th>
+        </tr>
+    </thead>
+    <tbody>
+
+    @foreach (var item in Model){
+        <tr>
+            <th scope="row">@(counter++)</th>
+            <td>@item.MembershipType</td>
+            <td>@item.Description</td>
+            <td>@item.MembershipPrice.ToString("c0")</td>
+            @if(item.JoiningFee ==0 || item.JoiningFee ==null){
+                <td></td>       
+            }else{
+                <td>@item.JoiningFee?.ToString("c0")</td>
+            }
+            <td>@item.Condition</td>
+            <td>
+                <div class="d-grid gap-2 d-md-block" role="group">
+                    <a asp-controller="Membership" asp-action="Edit" asp-route-id="@item.Id" class="btn-primary btn"><i class="bi bi-pencil-square"></i>Edit</a>
+                    <a asp-controller="Membership" asp-action="Delete" asp-route-id="@item.Id" class="btn-danger btn"><i class="bi bi-trash-fill"></i>Delete</a>
+                </div>
+            </td>
+        </tr>
+    }
+    </tbody>
+    </table>
+
+</div>
+

@@ -1,0 +1,30 @@
+﻿@model Membership
+
+<div class="container">
+    <h2>Delete Membership</h2>
+    <form method="post">
+        <div class="mb-3">
+            <label class="form-label" asp-for="MembershipType"></label>
+            <input disabled type="text" class="form-control" asp-for="MembershipType">
+        </div>
+         <div class="mb-3">
+            <label class="form-label" asp-for="Description"></label>
+            <textarea disabled type="text" class="form-control" asp-for="Description"></textarea>
+        </div>
+         <div class="mb-3">
+            <label class="form-label" asp-for="MembershipPrice"></label>
+            <input disabled type="text" class="form-control" asp-for="MembershipPrice">
+        </div>
+         <div class="mb-3">
+            <label class="form-label" asp-for="JoiningFee"></label>
+            <input disabled type="text" class="form-control" asp-for="JoiningFee">
+        </div>
+        <div class="mb-3">
+            <label class="form-label" asp-for="Condition"></label>
+            <input disabled type="text" class="form-control" asp-for="Condition">
+        </div>
+        <button type="submit" class="btn btn-danger">Delete</button>
+        <a  class="btn btn-secondary" asp-controller="Membership" asp-action="Index">Back to Membership</a>
+    </form>
+</div>
+

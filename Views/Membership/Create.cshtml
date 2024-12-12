@@ -1,0 +1,38 @@
+﻿@model Membership
+
+<div class="container">
+    <h2>Create Membership</h2>
+    <form method="post">
+        <div class="mb-3">
+            <label class="form-label" asp-for="MembershipType"></label>
+            <input type="text" class="form-control" asp-for="MembershipType">
+            <span  asp-validation-for="MembershipType"class="text-danger"></span>
+        </div>
+         <div class="mb-3">
+            <label class="form-label" asp-for="Description"></label>
+            <textarea type="text" class="form-control" asp-for="Description"></textarea>
+        </div>
+         <div class="mb-3">
+            <label class="form-label" asp-for="MembershipPrice"></label>
+            <input type="text" class="form-control" asp-for="MembershipPrice">
+            <span  asp-validation-for="MembershipPrice"class="text-danger"></span>
+        </div>
+         <div class="mb-3">
+            <label class="form-label" asp-for="JoiningFee"></label>
+            <input type="text" class="form-control" asp-for="JoiningFee">
+            <span  asp-validation-for="JoiningFee"class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" asp-for="Condition"></label>
+            <input type="text" class="form-control" asp-for="Condition">
+        </div>
+        <button type="submit" class="btn btn-primary">Create</button>
+        <a  class="btn btn-secondary" asp-controller="Membership" asp-action="Index">Back to Membership</a>
+    </form>
+</div>
+
+@section Scripts{
+    @{
+    <partial name="_ValidationScriptsPartial"/>
+    }
+}
