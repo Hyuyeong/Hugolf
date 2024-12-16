@@ -1,0 +1,40 @@
+﻿@model IEnumerable<BookingTime>
+<div class="container">
+    <h3>Book a Tee Time</h3>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Time</th>
+                <th>Tee</th>
+                <th>Player 1</th>
+                <th>Player 2</th>
+                <th>Player 3</th>
+                <th>Player 4</th>
+            </tr>
+        </thead>
+        <tbody>
+            @* <tr>
+                <td>7:32</td>
+                <td class="text-center">1</td>
+                <td><a asp-action="Booking" class="btn btn-success">Book Here</a></td>
+                <td><a asp-action="Booking" class="btn btn-success">Book Here</a></td>
+                <td><a asp-action="Booking" class="btn btn-success">Book Here</a></td>
+                <td><a asp-action="Booking" class="btn btn-success">Book Here</a></td>   
+            </tr>  *@
+            @foreach (var timeSlot in Model)
+        {
+            <tr>
+                <td>@timeSlot.Time.ToString("hh:mm tt")</td>
+                <td>1</td>
+                <td><a asp-action="Booking" asp-route-id="@timeSlot.PlayerOne" class="btn btn-success">Book Here</a></td>
+                <td><a asp-action="Booking" asp-route-id="@timeSlot.PlayerTwo" class="btn btn-success">Book Here</a></td>
+                <td><a asp-action="Booking" asp-route-id="@timeSlot.PlayerThree" class="btn btn-success">Book Here</a></td>
+                <td><a asp-action="Booking" asp-route-id="@timeSlot.PlayerFour" class="btn btn-success">Book Here</a></td>
+            </tr>
+        }   
+        </tbody>
+    </table>
+
+    <a asp-action="Index" class="btn btn-secondary">Back</a>
+
+</div>

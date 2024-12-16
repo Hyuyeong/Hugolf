@@ -3,6 +3,7 @@ using System;
 using Hugolf.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Hugolf.Migrations
 {
     [DbContext(typeof(ApplictionDbContext))]
-    partial class ApplictionDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241216173103_BookingDate")]
+    partial class BookingDate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.0");
@@ -32,37 +35,6 @@ namespace Hugolf.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("BookingDates");
-                });
-
-            modelBuilder.Entity("Hugolf.Models.BookingTime", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("BookingDateId")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("PlayerFour")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("PlayerOne")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("PlayerThree")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("PlayerTwo")
-                        .HasColumnType("TEXT");
-
-                    b.Property<TimeOnly>("Time")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("BookingDateId");
-
-                    b.ToTable("BookingTimes");
                 });
 
             modelBuilder.Entity("Hugolf.Models.Membership", b =>
@@ -129,17 +101,6 @@ namespace Hugolf.Migrations
                             MembershipPrice = 120.0,
                             MembershipType = "Junior"
                         });
-                });
-
-            modelBuilder.Entity("Hugolf.Models.BookingTime", b =>
-                {
-                    b.HasOne("Hugolf.Models.BookingDate", "BookingDate")
-                        .WithMany()
-                        .HasForeignKey("BookingDateId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("BookingDate");
                 });
 #pragma warning restore 612, 618
         }

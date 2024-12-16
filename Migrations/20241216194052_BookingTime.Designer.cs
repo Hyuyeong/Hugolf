@@ -3,6 +3,7 @@ using System;
 using Hugolf.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Hugolf.Migrations
 {
     [DbContext(typeof(ApplictionDbContext))]
-    partial class ApplictionDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241216194052_BookingTime")]
+    partial class BookingTime
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.0");
@@ -44,15 +47,19 @@ namespace Hugolf.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("PlayerFour")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("PlayerOne")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("PlayerThree")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("PlayerTwo")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<TimeOnly>("Time")

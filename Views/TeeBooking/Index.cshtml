@@ -1,0 +1,23 @@
+﻿@model IEnumerable<BookingDate>
+<div class="container">
+    <h3>Book a Tee Time</h3>
+    <table>
+        <thead>
+            <tr>
+                @foreach (var date in Model)
+                {
+                    <th>@date.Date.ToString("ddd")<br>
+                        @date.Date.ToString("dd MMM")</th>            
+                }
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                @foreach (var date in Model)
+                {
+                    <td><a asp-action="Booking" asp-route-id="@date.Id" class="btn btn-success">@(date.IsAvailable ? "Available" : "Not Available")</a></td>
+                }
+            </tr>
+        </tbody>
+    </table>
+</div>

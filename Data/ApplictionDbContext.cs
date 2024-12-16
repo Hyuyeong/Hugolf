@@ -10,6 +10,8 @@ public class ApplictionDbContext : DbContext
         : base(options) { }
 
     public DbSet<Membership> Memberships { get; set; }
+    public DbSet<BookingDate> BookingDates { get; set; }
+    public DbSet<BookingTime> BookingTimes { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
