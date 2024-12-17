@@ -98,5 +98,20 @@ namespace Hugolf.Controllers
         // }
 
         // GET: TeeBookingController
+
+        public ActionResult BookingDetail(int id)
+        {
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
+            BookingTime? bookingTimeFromDb = _db.BookingTimes.Find(id);
+            if (bookingTimeFromDb == null)
+            {
+                return NotFound();
+            }
+
+            return View(bookingTimeFromDb);
+        }
     }
 }
