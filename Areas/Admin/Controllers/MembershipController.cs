@@ -1,22 +1,25 @@
 using System;
 using Hugolf.Data;
 using Hugolf.Models;
+using Hugolf.Repository;
+using Hugolf.Repository.IRepository;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Hugolf.Controllers;
 
+[Area("Admin")]
 public class MembershipController : Controller
 {
-    private readonly ApplictionDbContext _db;
+    private readonly IUnitOfWork _unitOfWork;
 
-    public MembershipController(ApplictionDbContext db)
+    public MembershipController(IUnitOfWork unitOfWork)
     {
-        _db = db;
+        _unitOfWork = unitOfWork;
     }
 
     public IActionResult Index()
     {
-        List<Membership> membershipList = _db.Memberships.ToList();
+        List<Membership> membershipList = _unitOfWork.Membership.GetAll().ToList();
         return View(membershipList);
     }
 
@@ -32,8 +35,8 @@ public class MembershipController : Controller
         // ModelState.Remove("Condition");
         if (ModelState.IsValid)
         {
-            _db.Memberships.Add(obj);
-            _db.SaveChanges();
+            _unitOfWork.Membership.Add(obj);
+            _unitOfWork.Save();
             TempData["success"] = "Membership created successfully!";
 
             return RedirectToAction("Index");
@@ -47,7 +50,7 @@ public class MembershipController : Controller
         {
             return NotFound();
         }
-        Membership? membershipFromDb = _db.Memberships.Find(id);
+        Membership? membershipFromDb = _unitOfWork.Membership.Get(u => u.Id == id);
         if (membershipFromDb == null)
         {
             return NotFound();
@@ -60,8 +63,8 @@ public class MembershipController : Controller
     {
         if (ModelState.IsValid)
         {
-            _db.Memberships.Update(obj);
-            _db.SaveChanges();
+            _unitOfWork.Membership.Update(obj);
+            _unitOfWork.Save();
             TempData["success"] = "Membership updated successfully!";
 
             return RedirectToAction("Index");
@@ -75,7 +78,7 @@ public class MembershipController : Controller
         {
             return NotFound();
         }
-        Membership? membershipFromDb = _db.Memberships.Find(id);
+        Membership? membershipFromDb = _unitOfWork.Membership.Get(u => u.Id == id);
         if (membershipFromDb == null)
         {
             return NotFound();
@@ -86,13 +89,13 @@ public class MembershipController : Controller
     [HttpPost, ActionName("Delete")]
     public IActionResult DeletePost(int? id)
     {
-        Membership? membershipFromDb = _db.Memberships.Find(id);
+        Membership? membershipFromDb = _unitOfWork.Membership.Get(u => u.Id == id);
         if (membershipFromDb == null)
         {
             return NotFound();
         }
-        _db.Memberships.Remove(membershipFromDb);
-        _db.SaveChanges();
+        _unitOfWork.Membership.Remove(membershipFromDb);
+        _unitOfWork.Save();
         TempData["success"] = "Membership deleted successfully";
         return RedirectToAction("Index");
     }

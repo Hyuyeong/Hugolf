@@ -3,7 +3,7 @@ using Hugolf.Models;
 
 namespace Hugolf.Repository.IRepository;
 
-public interface IMembershipRepository
+public interface IMembershipRepository : IRepository<Membership>
 {
     void Update(Membership obj);
 }

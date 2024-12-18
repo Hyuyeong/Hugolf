@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Hugolf.Controllers
 {
+    [Area("Customer")]
     public class TeeBookingController : Controller
     {
         private readonly ApplictionDbContext _db;

@@ -1,4 +1,6 @@
 using Hugolf.Data;
+using Hugolf.Repository;
+using Hugolf.Repository.IRepository;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,7 +12,7 @@ builder.Services.AddDbContext<ApplictionDbContext>(opt =>
     var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
     opt.UseSqlite(connectionString);
 });
-
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -28,6 +30,9 @@ app.UseRouting();
 
 app.UseAuthorization();
 
-app.MapControllerRoute(name: "default", pattern: "{controller=Home}/{action=Index}/{id?}");
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{area=Customer}/{controller=Home}/{action=Index}/{id?}"
+);
 
 app.Run();
