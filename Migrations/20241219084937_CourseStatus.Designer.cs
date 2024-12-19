@@ -3,6 +3,7 @@ using System;
 using Hugolf.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Hugolf.Migrations
 {
     [DbContext(typeof(ApplictionDbContext))]
-    partial class ApplictionDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241219084937_CourseStatus")]
+    partial class CourseStatus
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.0");
@@ -72,35 +75,32 @@ namespace Hugolf.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<bool>("Bag")
-                        .HasColumnType("INTEGER");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER")
+                        .HasDefaultValue(true);
 
                     b.Property<bool>("Cart")
-                        .HasColumnType("INTEGER");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER")
+                        .HasDefaultValue(true);
 
                     b.Property<bool>("IsCourseOpen")
-                        .HasColumnType("INTEGER");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER")
+                        .HasDefaultValue(true);
 
                     b.Property<string>("Notes")
                         .HasMaxLength(500)
                         .HasColumnType("TEXT");
 
                     b.Property<bool>("Trundler")
-                        .HasColumnType("INTEGER");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER")
+                        .HasDefaultValue(false);
 
                     b.HasKey("Id");
 
                     b.ToTable("CourseStatuses");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Bag = true,
-                            Cart = true,
-                            IsCourseOpen = true,
-                            Notes = "Course is open but trundlers are unavailable due to maintenance.",
-                            Trundler = false
-                        });
                 });
 
             modelBuilder.Entity("Hugolf.Models.Membership", b =>

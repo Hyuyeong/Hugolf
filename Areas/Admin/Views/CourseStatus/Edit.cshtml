@@ -1,0 +1,85 @@
+﻿@model CourseStatus
+
+<div class="container">
+    <h2>Edit Course Status</h2>
+    <form method="post">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Category</th>
+                    <th>Condition</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>
+                        <label class="form-label" asp-for="Cart">Cart</label>
+                    </th>
+                    <td>
+                        <input type="radio" asp-for="Cart" value="true" id="CartYes">
+                        <label class="me-3"for="CartYes">Yes</label>
+                        <input type="radio" asp-for="Cart" value="false" id="CartNo">
+                        <label for="CartNo">No</label>
+                        <span asp-validation-for="Cart" class="text-danger"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        <label class="form-label" asp-for="Bag">Bag</label>
+                    </th>
+                    <td>
+                        <input type="radio" asp-for="Bag" value="true" id="BagYes">
+                        <label class="me-3" for="BagYes">Yes</label>
+                        <input type="radio" asp-for="Bag" value="false" id="BagNo">
+                        <label for="BagNo">No</label>
+                        <span asp-validation-for="Bag" class="text-danger"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        <label class="form-label" asp-for="Trundler">Trundler</label>
+                    </th>
+                    <td>
+                        <input type="radio" asp-for="Trundler" value="true" id="TrundlerYes">
+                        <label class="me-3" for="TrundlerYes">Yes</label>
+                        <input type="radio" asp-for="Trundler" value="false" id="TrundlerNo">
+                        <label for="TrundlerNo">No</label>
+                        <span asp-validation-for="Trundler" class="text-danger"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        <label class="form-label" asp-for="IsCourseOpen">Course</label>
+                    </th>
+                    <td>
+                        <input type="radio" asp-for="IsCourseOpen" value="true" id="CourseOpen">
+                        <label class="me-2" for="CourseOpen">Open</label>
+                        <input type="radio" asp-for="IsCourseOpen" value="false" id="CourseClose">
+                        <label for="CourseClose">Close</label>
+                        <span asp-validation-for="IsCourseOpen" class="text-danger"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        <label class="form-label" asp-for="Notes">Notes</label>
+                    </th>
+                    <td>
+                        <input type="text" class="form-control" asp-for="Notes">
+                        <span asp-validation-for="Notes" class="text-danger"></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="d-flex justify-content-end">
+            <button type="submit" class="btn btn-primary me-2">Update</button>
+            <a class="btn btn-secondary" asp-controller="CourseStatus" asp-action="Index">Back to Course Status</a>
+        </div>
+    </form>
+</div>
+
+
+@section Scripts{
+    @{
+    <partial name="_ValidationScriptsPartial"/>
+    }
+}

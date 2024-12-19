@@ -2,7 +2,30 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
+@model CourseStatus
+
+@* <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+</div> *@
+
+<table class="table container">
+            <thead>
+                <tr>
+                    <th>Cart</th>
+                    <th>Bag</th>
+                    <th>Trundler</th>
+                    <th>Course</th>
+                </tr>
+            </thead>
+            <tbody>
+            
+                    <tr>
+                        <td>@(Model.Cart ? "Yes" : "No")</td>
+                        <td>@(Model.Bag ? "Yes" : "No")</td>
+                        <td>@(Model.Trundler ? "Yes" : "No")</td>
+                        <td>@(Model.IsCourseOpen ? "Open" : "Closed")</td>
+                    </tr>
+                
+            </tbody>
+        </table>
