@@ -1,10 +1,11 @@
 using System;
 using Hugolf.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Hugolf.Data;
 
-public class ApplictionDbContext : DbContext
+public class ApplictionDbContext : IdentityDbContext
 {
     public ApplictionDbContext(DbContextOptions<ApplictionDbContext> options)
         : base(options) { }
@@ -12,6 +13,7 @@ public class ApplictionDbContext : DbContext
     public DbSet<Membership> Memberships { get; set; }
     public DbSet<BookingDate> BookingDates { get; set; }
     public DbSet<BookingTime> BookingTimes { get; set; }
+    public DbSet<ApplicationUser> ApplicationUsers { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

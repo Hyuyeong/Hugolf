@@ -3,11 +3,14 @@ using Hugolf.Data;
 using Hugolf.Models;
 using Hugolf.Repository;
 using Hugolf.Repository.IRepository;
+using Hugolf.Utility;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Hugolf.Controllers;
 
 [Area("Admin")]
+[Authorize(Roles = SD.Role_Admin)]
 public class MembershipController : Controller
 {
     private readonly IUnitOfWork _unitOfWork;
@@ -98,5 +101,19 @@ public class MembershipController : Controller
         _unitOfWork.Save();
         TempData["success"] = "Membership deleted successfully";
         return RedirectToAction("Index");
+    }
+
+    public IActionResult Join(int? id)
+    {
+        if (id == null || id == 0)
+        {
+            return NotFound();
+        }
+        Membership? membershipFromDb = _unitOfWork.Membership.Get(u => u.Id == id);
+        if (membershipFromDb == null)
+        {
+            return NotFound();
+        }
+        return View(membershipFromDb);
     }
 }

@@ -41,6 +41,7 @@
             <td>@item.Condition</td>
             <td>
                 <div class="d-grid gap-2 d-md-block" role="group">
+                    <a asp-controller="Membership" asp-action="Join" asp-route-id="@item.Id" class="btn-primary btn"><i class="bi bi-pencil-square"></i>Join</a>
                     <a asp-controller="Membership" asp-action="Edit" asp-route-id="@item.Id" class="btn-primary btn"><i class="bi bi-pencil-square"></i>Edit</a>
                     <a asp-controller="Membership" asp-action="Delete" asp-route-id="@item.Id" class="btn-danger btn"><i class="bi bi-trash-fill"></i>Delete</a>
                 </div>
