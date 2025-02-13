@@ -15,7 +15,7 @@
             <tr>
                 @foreach (var date in Model)
                 {
-                    <td><a asp-action="Booking" asp-route-id="@date.Id" class="btn btn-success">@(date.IsAvailable ? "Available" : "Not Available")</a></td>
+                    <td><a asp-action="Booking" asp-route-id="@date.Id" class="btn btn-success">@(date.IsAvailable ? "Available" : "Not Available")<strong>@ViewData["TotalAvailableSeats"]</strong></a></td>
                 }
             </tr>
         </tbody>

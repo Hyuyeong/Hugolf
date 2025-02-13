@@ -26,10 +26,31 @@
             <tr>
                 <td>@timeSlot.Time.ToString("hh:mm tt")</td>
                 <td>1</td>
-                <td><a asp-action="BookingDetail" asp-route-id="@timeSlot.Id" class="btn btn-success">Book Here</a></td>
-                <td><a asp-action="BookingDetail" asp-route-id="@timeSlot.Id" class="btn btn-success">Book Here</a></td>
-                <td><a asp-action="BookingDetail" asp-route-id="@timeSlot.Id" class="btn btn-success">Book Here</a></td>
-                <td><a asp-action="BookingDetail" asp-route-id="@timeSlot.Id" class="btn btn-success">Book Here</a></td>
+
+                @if(@timeSlot.PlayerOne == null){
+
+                    <td><a asp-action="BookingDetail" asp-route-id="@timeSlot.Id" class="btn btn-success">Book Here</a></td>
+                }else{
+                    <td><button class="btn btn-danger disable">Not available</button></td>  
+                }
+                @if(@timeSlot.PlayerTwo == null){
+
+                    <td><a asp-action="BookingDetail" asp-route-id="@timeSlot.Id" class="btn btn-success">Book Here</a></td>
+                }else{
+                    <td><button class="btn btn-danger disable">Not available</button></td>  
+                }
+                @if(@timeSlot.PlayerThree == null){
+
+                    <td><a asp-action="BookingDetail" asp-route-id="@timeSlot.Id" class="btn btn-success">Book Here</a></td>
+                }else{
+                    <td><button class="btn btn-danger disable">Not available</button></td>  
+                }
+                @if(@timeSlot.PlayerFour == null){
+
+                    <td><a asp-action="BookingDetail" asp-route-id="@timeSlot.Id" class="btn btn-success">Book Here</a></td>
+                }else{
+                    <td><button class="btn btn-danger disable">Not available</button></td>  
+                }
             </tr>
         }   
         </tbody>

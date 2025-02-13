@@ -1,0 +1,22 @@
+﻿<div class="container">
+    <h2>Create Booking Date</h2>
+    <form method="post" asp-action="Create">
+        <div class="mb-3">
+            <label class="form-label">From</label>
+            <input type="date" class="form-control" name="dateFrom">
+            <span class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">To</label>
+            <input type="date" class="form-control" name="dateTo">
+            <span class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-primary">Create</button>
+    </form>
+</div>
+
+@section Scripts{
+    @{
+    <partial name="_ValidationScriptsPartial"/>
+    }
+}

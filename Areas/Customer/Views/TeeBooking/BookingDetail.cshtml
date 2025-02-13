@@ -1,8 +1,11 @@
-﻿<h2>Booking detail page</h2>
+﻿@model BookingTime
+<h2>Booking Detail Page</h2>
 
 <h3>Monday 23 Dec 2024 1:08 PM</h3>
 
-<table class="table table-striped">
+<form method="post" asp-action="CreateBooking">
+
+    <table class="table table-striped">
         <thead>
             <tr>
                 <th>Player 1</th>
@@ -12,43 +15,43 @@
             </tr>
         </thead>
         <tbody>
-            
             <tr>
                 <td>
-                    <select>
-                        <option value="">Member</option>
-                        <option value="">Friend</option>
-                        <option value="">Vistor</option>
+                    <select name="player1" class="form-control" @(string.IsNullOrEmpty(Model.PlayerOne) ? "" : "disabled")>
+                        <option value="">Select</option>
+                        <option value="1">Member</option>
+                        <option value="friend">Friend</option>
+                        <option value="visitor">Visitor</option>
                     </select>
                 </td>
                 <td>
-                    <select>
-                        <option value="">Member</option>
-                        <option value="">Friend</option>
-                        <option value="">Vistor</option>
+                    <select name="player2" class="form-control" @(string.IsNullOrEmpty(Model.PlayerTwo) ? "" : "disabled")>
+                        <option value="">Select</option>
+                        <option value="2">Member</option>
+                        <option value="friend">Friend</option>
+                        <option value="visitor">Visitor</option>
                     </select>
                 </td>
                 <td>
-                    <select>
-                        <option value="">Member</option>
-                        <option value="">Friend</option>
-                        <option value="">Vistor</option>
+                    <select name="player3" class="form-control" @(string.IsNullOrEmpty(Model.PlayerThree) ? "" : "disabled")>
+                        <option value="">Select</option>
+                        <option value="3">Member</option>
+                        <option value="friend">Friend</option>
+                        <option value="visitor">Visitor</option>
                     </select>
                 </td>
                 <td>
-                    <select>
-                        <option value="">Member</option>
-                        <option value="">Friend</option>
-                        <option value="">Vistor</option>
+                    <select name="player4" class="form-control" @(string.IsNullOrEmpty(Model.PlayerFour) ? "" : "disabled")>
+                        <option value="">Select</option>
+                        <option value="4">Member</option>
+                        <option value="friend">Friend</option>
+                        <option value="visitor">Visitor</option>
                     </select>
                 </td>
-               
             </tr>
-      
         </tbody>
     </table>
 
-<form method="post" asp-action="YourActionMethod">
     <div class="form-group">
         <label>Holes</label>
         <div>
@@ -56,10 +59,11 @@
             <label for="nineHoles">9 Holes</label>
         </div>
         <div>
-            <input type="radio" id="eighteenHoles" name="holes" value="18" />
+            <input type="radio" id="eighteenHoles" name="holes" value="18" checked />
             <label for="eighteenHoles">18 Holes</label>
         </div>
     </div>
 
+    <input type="hidden" name="bookingTimeId" value="@Model.Id" />
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
