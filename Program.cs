@@ -12,7 +12,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ApplictionDbContext>(opt =>
 {
-    var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+    var connectionString =
+        Environment.GetEnvironmentVariable("DATABASE_URL")
+        ?? builder.Configuration.GetConnectionString("DefaultConnection");
     opt.UseSqlite(connectionString);
 });
 
